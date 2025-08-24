@@ -22,7 +22,6 @@ const login = async (email, password) => {
 };
 
 const refreshAccessToken = async (refreshToken) => {
-  // You should validate the refreshToken and check if it's not revoked
   try {
     const payload = require("jsonwebtoken").verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
     const accessToken = generateAccessToken(payload.id);
