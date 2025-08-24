@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import bcrypt from "bcryptjs";
 import sequelize from "../config/db.js";
 
-const User = sequelize.define("User", {
+const User = sequelize.define("user", {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
   name: { type: DataTypes.STRING, allowNull: false },
   email: { type: DataTypes.STRING, allowNull: false, unique: true },
