@@ -29,7 +29,7 @@ const User = sequelize.define("user", {
     type: DataTypes.DATE, 
     allowNull: true 
   },
-  walletBalance: { 
+  wallet_balance: { 
     type: DataTypes.FLOAT, 
     defaultValue: 0 
   }
@@ -54,18 +54,18 @@ User.prototype.matchPassword = async function (enteredPassword) {
 
 // helper methods for wallet
 User.prototype.addToWallet = async function (amount) {
-  this.walletBalance += amount;
+  this.wallet_balance += amount;
   await this.save();
-  return this.walletBalance;
+  return this.wallet_balance;
 };
 
 User.prototype.deductFromWallet = async function (amount) {
-  if (this.walletBalance < amount) {
+  if (this.wallet_balance < amount) {
     throw new Error("Insufficient wallet balance");
   }
-  this.walletBalance -= amount;
+  this.wallet_balance -= amount;
   await this.save();
-  return this.walletBalance;
+  return this.wallet_balance;
 };
 
 export default User;

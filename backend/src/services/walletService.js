@@ -4,8 +4,8 @@ import User from "../models/userModel.js";
 import Transaction from "../models/transactionModel.js";
 
 const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY,
-  key_secret: process.env.RAZORPAY_SECRET,
+  key_id:'rzp_test_R9WNEHG3V1bTm1',
+  key_secret:'oyNSVMGFZ0nA7GLyGJLGdJTX',
 });
 
 const createOrder = async (amount) => {
@@ -14,40 +14,42 @@ const createOrder = async (amount) => {
     currency: "INR",
     receipt: `wallet_recharge_${Date.now()}`,
   };
+  console.log('options as',options)
   return await razorpay.orders.create(options);
 };
 
-const verifyPayment = async ({ razorpay_order_id, razorpay_payment_id, razorpay_signature, userId, amount }) => {
+const verifyPayment = async ({ orderId, paymentId, signature, userId, amount }) => {
   const sign = crypto
     .createHmac("sha256", razorpay.key_secret)
-    .update(razorpay_order_id + "|" + razorpay_payment_id)
+    .update(orderId + "|" + paymentId)
     .digest("hex");
-  if (sign !== razorpay_signature) {
+  if (sign !== signature) {
     throw new Error("Payment verification failed");
   }
   const user = await User.findByPk(userId);
-  user.walletBalance += amount;
-  await user.save();
-  await Transaction.create({
-    userId,
-    type: "CREDIT",
-    amount,
-    description: "Wallet recharge",
-  });
-  return user.walletBalance;
+  console.log('user is',user)
+   user.wallet_balance += amount;
+   await user.save();
+  // await Transaction.create({
+  //   userId,
+  //   type: "CREDIT",
+  //   amount,
+  //   description: "Wallet recharge",
+  // });
+  //return user.wallet_balance;
 };
 
 const getWalletBalance = async (userId) => {
   const user = await User.findByPk(userId);
-  return user.walletBalance;
+  return user.wallet_balance;
 };
 
 const approveQuotation = async (userId, amount) => {
   const user = await User.findByPk(userId);
-  if (user.walletBalance < amount) {
+  if (user.wallet_balance < amount) {
     throw new Error("Insufficient balance");
   }
-  user.walletBalance -= amount;
+  user.wallet_balance -= amount;
   await user.save();
   await Transaction.create({
     userId,
@@ -55,7 +57,7 @@ const approveQuotation = async (userId, amount) => {
     amount,
     description: "Quotation approved, order placed",
   });
-  return user.walletBalance;
+  return user.wallet_balance;
 };
 
 const getTransactions = async (userId) => {

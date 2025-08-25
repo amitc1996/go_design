@@ -9,8 +9,8 @@ import {
 
 const router = express.Router();
 
-router.post("/create-order", createOrder);
-router.post("/verify-payment", verifyPayment);
+router.post("/recharge", createOrder);
+router.post("/verify", verifyPayment);
 router.get("/balance/:userId", getWalletBalance);
 router.post("/approve-quotation", approveQuotation);
 router.get("/transactions/:userId", getTransactions);
