@@ -1,0 +1,330 @@
+/* Shared Template Styles for GoDesign */
+
+body {
+  background-color: #fff;
+  font-family: 'Inter', 'Plus Jakarta Sans', Arial, sans-serif;
+  margin: 0;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 175px;
+  height: 100vh;
+  background-color: #f9f9f9;
+  padding: 20px 15px;
+  border-right: 1px solid #e5e5e5;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sidebar a {
+  display: flex;
+  width: 139px;
+  height: 21px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #797979;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 15px;
+  transition: all 0.2s ease;
+}
+.sidebar a:hover {
+  color: #000;
+}
+.sidebar a.active {
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+.sidebar-divider {
+  width: 150px;
+  height: 1px;
+  background: #DADDE3;
+  margin: 15px 0;
+}
+.settings-link {
+  color: #797979;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.settings-link:hover {
+  color: #000;
+}
+
+/* Header */
+.header {
+  height: 134px;
+  background-color: #050010;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  color: #fff;
+  gap: 20px;
+}
+.header .logo img {
+  width: 152px;
+  height: 35px;
+}
+.search-bar input {
+  width: 760px;
+  height: 43px;
+  border-radius: 13.176px;
+  border: 0.824px solid #BFBFBF;
+  background: #FFF;
+  padding: 0 20px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Wallet */
+.wallet {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.wallet .btn-recharge {
+  width: 94px;
+  height: 41px;
+  border: none;
+  border-radius: 13px;
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  color: #FFF;
+  font-size: 15.647px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.wallet .btn-recharge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.wallet .avatar {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  border: 2px solid #6197FE;
+  background: #D9D9D9;
+  background-image: url('https://i.pravatar.cc/43');
+  background-size: cover;
+  background-position: center;
+}
+.wallet-balance-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 22px 4px 14px;
+  background: transparent;
+  border-radius: 13px!important;
+  border: 2px solid #485DFF!important;
+  box-shadow: 0 0 14px 0 rgba(106,227,255,0.42);
+  font-size: 15.647px;
+  font-weight: 700;
+  color: #6AE3FF;
+  width: 115px;
+  height: 41px;
+  justify-content: center;
+}
+.wallet-balance-amount {
+  font-size: 15.647px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #485DFF, #779BFF, #5199FE);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wallet-icon {
+  margin-right: 5px;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* Welcome Section */
+.welcome h2 {
+  font-size: 41.124px;
+  font-weight: 400;
+  line-height: 45.346px;
+  margin: 0;
+}
+.welcome h2 .gradient-text {
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 41.124px;
+  font-weight: 400;
+  line-height: 45.346px;
+}
+.welcome p {
+  width: 529.642px;
+  color: #797979;
+  font-size: 17.232px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+.btn-create {
+  width: 220px;
+  height: 50px;
+  border-radius: 13.856px;
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  border: none;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-create:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(72, 93, 255, 0.4);
+}
+
+/* Filter Section */
+.filter-section select {
+  width: 272px;
+  height: 43px;
+  border-radius: 14.5px;
+  border: 1px solid #DADDE3;
+  background: #EFEFF1;
+  padding: 0 15px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #555;
+  outline: none;
+  appearance: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.filter-section select:focus {
+  border-color: #628cfb;
+  box-shadow: 0 0 6px rgba(98, 140, 251, 0.5);
+  background: #fff;
+}
+.filter-btn {
+  width: 263px;
+  height: 43px;
+  padding: 12px 20px;
+  border-radius: 13.856px;
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  border: none;
+  color: #FFF;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(72, 93, 255, 0.4);
+}
+
+/* Cards */
+.card-custom {
+  width: 272.076px;
+  height: 291.122px;
+  border-radius: 14.5px;
+  border: 0.91px solid #DADDE3;
+  background: #EFEFF1;
+  overflow: hidden;
+  transition: transform .2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 2px 10px rgba(60,70,140,0.05);
+}
+.card-custom:hover {
+  transform: translateY(-5px);
+}
+.card-custom img {
+  width: 228.35px;
+  height: 103.07px;
+  border-radius: 10px;
+  background: lightgray;
+  object-fit: cover;
+  margin: 18px 0 0 0;
+  display: block;
+}
+.card-body-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  width: 100%;
+  padding: 18px 18px 0 18px;
+}
+.card-cat {
+  font-size: 13.6px;
+  font-weight: 500;
+  margin-bottom: 7px;
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.card-title {
+  width: 206.778px;
+  height: 44.439px;
+  color: #0C0C0C;
+  font-size: 25.394px;
+  font-weight: 400;
+}
+.card-desc {
+  width: 228.544px;
+  height: 80.716px;
+  color: #767676;
+  font-size: 17.232px;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .search-bar input {
+    width: 500px;
+  }
+}
+@media (max-width: 992px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    gap: 15px;
+  }
+  .search-bar input {
+    width: 100%;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .d-flex {
+    flex-direction: column;
+  }
+  .filter-section select,
+  .filter-btn {
+    width: 100%;
+  }
+  .card-custom {
+    width: 100%;
+    height: auto;
+  }
+}
