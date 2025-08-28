@@ -13,3 +13,5 @@ backend/src/yarn-error.log*
 .DS_Store
 *.swp
 
+
+.vscode/
