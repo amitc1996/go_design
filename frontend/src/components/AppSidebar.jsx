@@ -4,12 +4,14 @@ import { NavLink } from "react-router-dom";
 const AppSidebar = () => (
   <aside className="sidebar">
     <nav>
-      <NavLink to="/dashboard">Dashboard</NavLink>
+      <NavLink to="/dashboard" className="active">Initiate a Project</NavLink>
+      <div className="sidebar-divider"></div>
+      <NavLink to="/transactions">Transaction History</NavLink>
+      <div className="sidebar-divider"></div>
       <NavLink to="/wallet">Wallet</NavLink>
-      <NavLink to="/account-settings">Account Settings</NavLink>
+      <div className="sidebar-divider"></div>
+      <NavLink to="/settings" className="settings-link">Settings</NavLink>
     </nav>
-    <div className="sidebar-divider"></div>
-    <a href="#" className="settings-link">Settings</a>
   </aside>
 );
 
