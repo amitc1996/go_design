@@ -65,7 +65,7 @@
 
     // Form Controls
     .form-control {
-      width: 436.471px;
+    //   width: 436.471px;
       height: 42.824px;
       border-radius: 13.176px;
       border: 0.824px solid #BFBFBF;
@@ -200,3 +200,40 @@
         opacity: 0.8;
       }
     }
+
+    .login-img1{
+        max-width: 100%;
+        height: auto;
+    }
+
+
+    .google-login-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 20px;
+  background: #fff;
+  border: 1.5px solid #e1e6ef;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #353845;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(50,70,120,0.07);
+  transition: box-shadow 0.12s;
+  outline: none;
+}
+.google-login-btn:hover,
+.google-login-btn:focus {
+  box-shadow: 0 2px 8px rgba(50,70,120,0.12);
+  border-color: #d1d8ee;
+}
+.google-icon {
+  height: 22px;
+  width: 22px;
+  margin-right: 6px;
+  background: none;
+  border-radius: 50%;
+  border: none;
+  display: inline-block;
+}
