@@ -15,7 +15,7 @@ body {
 // Sidebar
 .sidebar {
   width: 175px;
-  height: 100vh;
+  height:auto;
   background-color: #f9f9f9;
   padding: 20px 15px;
   border-right: 1px solid #e5e5e5;
@@ -318,9 +318,9 @@ body {
 
   .card-title {
     width: 206.778px;
-    height: 44.439px;
+    height: 30px;
     color: #0C0C0C;
-    font-size: 25.394px;
+    font-size: 20px;
     font-weight: 400;
   }
 
@@ -328,8 +328,7 @@ body {
     width: 228.544px;
     height: 80.716px;
     color: #767676;
-    font-size: 17.232px;
-    font-weight: 500;
+    font-size: 14.5px;
   }
 }
 

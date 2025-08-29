@@ -11,6 +11,8 @@ const AppSidebar = () => (
       <NavLink to="/wallet">Wallet</NavLink>
       <div className="sidebar-divider"></div>
       <NavLink to="/settings" className="settings-link">Settings</NavLink>
+      <div className="sidebar-divider"></div>
+      <NavLink to="/settings" className="settings-link">Log Out</NavLink>
     </nav>
   </aside>
 );
