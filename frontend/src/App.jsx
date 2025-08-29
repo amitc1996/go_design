@@ -2,7 +2,6 @@ import React, { Suspense } from "react"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { AuthProvider } from "./store/AuthContext"
 import PrivateRoute from "./components/PrivateRoute"
-import Layout from "./Layout"
 import routes from "./routes"
 
 export default function App() {

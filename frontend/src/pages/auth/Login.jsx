@@ -1,61 +1,138 @@
-import React, { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { useAuthDispatch, login } from '../../store/AuthContext'
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuthDispatch, login } from "../../store/AuthContext";
+import "./Login.scss"; // If you want to use SCSS for custom styles
+import IconsImg from 'src/assets/img/img1.png'
 
 export default function Login() {
-  const dispatch = useAuthDispatch()
-  const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [remember, setRemember] = useState(true)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const dispatch = useAuthDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [form, setForm] = useState({ name: "", email: "", password: "", terms: false });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
 
   async function submit(e) {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
     try {
-      await login(dispatch, { email, password, remember })
-      navigate('/dashboard')
+      await login(dispatch, { email, password, remember });
+      navigate("/dashboard");
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed')
+      setError(err.response?.data?.message || "Login failed");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="w-full max-w-md bg-white p-6 rounded shadow">
-        <h2 className="text-2xl mb-4">Sign in</h2>
-        <form onSubmit={submit}>
-          <label className="block mb-4">
-            <div className="text-sm mb-1">Email</div>
-            <input className="w-full border rounded px-3 py-2" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          </label>
+    <div className="container-fluid min-vh-100 d-flex align-items-center bg-white">
+      <div className="row align-items-center justify-content-center m-4 w-100">
+        {/* Left Section */}
+        <div className="col-md-6 mb-4 mb-md-0">
+          <div className="left-section d-flex justify-content-center align-items-center p-4 h-100">
+            <img src={IconsImg} alt="Dummy Mobile" className="img-fluid" />
+          </div>
+        </div>
 
-          <label className="block mb-4">
-            <div className="text-sm mb-1">Password</div>
-            <input className="w-full border rounded px-3 py-2" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          </label>
+        {/* Right Section */}
+        <div className="col-md-6">
+          <div className="right-section d-flex justify-content-center align-items-center h-100">
+            <div className="login-box shadow-sm">
+              <h2>Get Started Now</h2>
+              <p className="subheading-text">Login into your account to continue</p>
 
-          <label className="flex items-center text-sm mb-4">
-            <input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} className="mr-2" /> Remember me
-          </label>
+              <form onSubmit={submit}>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="form-control"
+                    placeholder="Enter your name"
+                    value={form.name}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">Email address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="form-control"
+                    placeholder="Enter your email address"
+                    value={form.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-2">
+                  <label htmlFor="password" className="form-label">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    className="form-control"
+                    placeholder="Enter your password"
+                    value={form.password}
+                    onChange={handleChange}
+                  />
+                </div>
 
-          {error && <div className="text-red-600 mb-3">{error}</div>}
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="termsCheck"
+                      name="terms"
+                      checked={form.terms}
+                      onChange={handleChange}
+                    />
+                    <label className="form-check-label terms-label" htmlFor="termsCheck">
+                      I agree to the Terms & Privacy
+                    </label>
+                  </div>
+                  <Link to="/forgot" className="forgot-password">Forgot Password?</Link>
+                </div>
 
-          <button type="submit" className="w-full py-2 rounded bg-blue-600 text-white" disabled={loading}>
-            {loading ? 'Signing...' : 'Sign in'}
-          </button>
-        </form>
+                {error && <div className="text-red-600 mb-3">{error}</div>}
 
-        <div className="mt-4 text-sm flex justify-between">
-          <Link to="/forgot">Forgot password?</Link>
-          <Link to="/register">Create account</Link>
+                <button type="submit" className="btn btn-login w-100" disabled={loading}>
+                  {loading ? 'Signing...' : 'Log in'}
+                </button>
+              </form>
+
+              <p className="mt-3 signup-text">
+                Don't have an account? <Link to="/register" className="signup-link">Sign up</Link>
+              </p>
+
+              <div className="d-flex align-items-center my-4">
+                <hr className="flex-grow-1" />
+                <span className="px-2 text-muted small">or</span>
+                <hr className="flex-grow-1" />
+              </div>
+
+              <button type="button" className="google-btn w-100">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Google Logo" />
+                Login with Google
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

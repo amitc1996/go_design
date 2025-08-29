@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import App from './App'
 import store from './store'
-import './index.css'
+import './index.scss'
 
 // If you need polyfills for older browsers, you can import core-js here
 // import 'core-js'
