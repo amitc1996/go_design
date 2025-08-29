@@ -1,25 +1,23 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { useAuthDispatch, login } from '../store/AuthContext'
+import api from '../../services/api'
 
-export default function Login() {
-  const dispatch = useAuthDispatch()
-  const navigate = useNavigate()
+export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [remember, setRemember] = useState(true)
+  const [name, setName] = useState('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   async function submit(e) {
     e.preventDefault()
     setLoading(true)
-    setError(null)
     try {
-      await login(dispatch, { email, password, remember })
-      navigate('/dashboard')
+      await api.post('/auth/register', { name, email, password })
+      navigate('/login')
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed')
+      console.error(err)
+      alert(err.response?.data?.message || 'Register failed')
     } finally {
       setLoading(false)
     }
@@ -28,8 +26,13 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-md bg-white p-6 rounded shadow">
-        <h2 className="text-2xl mb-4">Sign in</h2>
+        <h2 className="text-2xl mb-4">Create account</h2>
         <form onSubmit={submit}>
+          <label className="block mb-4">
+            <div className="text-sm mb-1">Full name</div>
+            <input className="w-full border rounded px-3 py-2" value={name} onChange={(e) => setName(e.target.value)} required />
+          </label>
+
           <label className="block mb-4">
             <div className="text-sm mb-1">Email</div>
             <input className="w-full border rounded px-3 py-2" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
@@ -40,20 +43,13 @@ export default function Login() {
             <input className="w-full border rounded px-3 py-2" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </label>
 
-          <label className="flex items-center text-sm mb-4">
-            <input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} className="mr-2" /> Remember me
-          </label>
-
-          {error && <div className="text-red-600 mb-3">{error}</div>}
-
-          <button type="submit" className="w-full py-2 rounded bg-blue-600 text-white" disabled={loading}>
-            {loading ? 'Signing...' : 'Sign in'}
+          <button type="submit" className="w-full py-2 rounded bg-green-600 text-white" disabled={loading}>
+            {loading ? 'Creating...' : 'Create account'}
           </button>
         </form>
 
-        <div className="mt-4 text-sm flex justify-between">
-          <Link to="/forgot">Forgot password?</Link>
-          <Link to="/register">Create account</Link>
+        <div className="mt-4 text-sm">
+          <Link to="/login">Already have an account? Sign in</Link>
         </div>
       </div>
     </div>
