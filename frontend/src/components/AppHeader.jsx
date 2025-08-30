@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LogoImg1 from "src/assets/img/logo.png";
+import "./AppHeader.scss"; // import CSS file
 
 const AppHeader = () => {
   const [showModal, setShowModal] = useState(false);
@@ -15,7 +16,6 @@ const AppHeader = () => {
     handleClose();
   };
 
-  // Handle body scroll lock
   useEffect(() => {
     if (showModal) {
       document.body.classList.add("modal-open");
@@ -65,58 +65,46 @@ const AppHeader = () => {
         </div>
       </header>
 
-      {/* React-controlled Modal */}
       {showModal && (
         <div
-          className="modal fade show"
-          style={{ display: "block" }}
+          className="custom-modal-backdrop"
           tabIndex="-1"
-          onClick={handleClose} // backdrop click
+          onClick={handleClose}
         >
           <div
-            className="modal-dialog"
-            onClick={(e) => e.stopPropagation()} // prevent close when clicking inside
+            className="custom-modal-card"
+            onClick={(e) => e.stopPropagation()}
           >
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Add Credit</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={handleClose}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <label htmlFor="amount" className="form-label">
-                  Amount
-                </label>
-                <input
-                  type="number"
-                  id="amount"
-                  className="form-control"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  min="1"
-                  placeholder="Enter amount"
-                />
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleClose}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={handleAddCredit}
-                  disabled={!amount || Number(amount) <= 0}
-                >
-                  Add Credit
-                </button>
-              </div>
+            <button
+              type="button"
+              className="custom-btn-close"
+              onClick={handleClose}
+              aria-label="Close"
+            >
+              &times;
+            </button>
+
+            <div className="modal-title">Recharge Wallet</div>
+
+            <div className="amount-input-row">
+              <input
+                type="text"
+                className="amount-input"
+                value={amount}
+                onChange={(e) =>
+                  setAmount(e.target.value.replace(/[^0-9]/g, ""))
+                }
+                placeholder="$ 0"
+                min="1"
+              />
+              <button
+                type="button"
+                className="btn-add-credits"
+                onClick={handleAddCredit}
+                disabled={!amount || Number(amount) <= 0}
+              >
+                Add Credits
+              </button>
             </div>
           </div>
         </div>

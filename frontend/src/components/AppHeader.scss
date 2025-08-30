@@ -1,0 +1,83 @@
+
+
+/* Modal Styles */
+.custom-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(40, 40, 60, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-modal-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(80, 105, 130, 0.18);
+  padding: 28px 30px 24px 30px;
+  min-width: 420px;
+  max-width: 90vw;
+  position: relative;
+}
+
+.custom-btn-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #6475f7;
+  cursor: pointer;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.amount-input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.amount-input {
+    font-size: 1.2rem;
+    font-weight: 500;
+    background: #e9ecef;
+    border-radius: 8px;
+    border: none;
+    padding: 11px 18px;
+    width: 210px;
+    box-shadow: none;
+}
+
+.btn-add-credits {
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.05rem;
+  padding: 13px 24px;
+  border-radius: 13px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  box-shadow: 0 2px 8px rgba(32, 47, 87, 0.06);
+  transition: background 0.2s ease-in-out;
+}
+
+.btn-add-credits:hover:not(:disabled) {
+  opacity: 1;  
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+}
+
+.btn-add-credits:disabled {
+  background: #a5b3ff;
+  cursor: not-allowed;
+}
