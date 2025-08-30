@@ -1,12 +1,12 @@
 /* Prevent horizontal scroll */
-    html, body {
-      overflow-x: hidden;
-    }
+    // html, body {
+    //   overflow-x: hidden;
+    // }
 
-    body {
-      font-family: Arial, sans-serif;
-      font-weight: 400;
-    }
+    // body {
+    //   font-family: Arial, sans-serif;
+    //   font-weight: 400;
+    // }
 
     // Left Section
     .left-section {
@@ -22,23 +22,19 @@
     }
 
     // Right Section
-    .right-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
+    // .right-section {
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   height: 100%;
+    // }
 
     // Login Box
-    .login-box {
-      width: 100%;
-      max-width: 480px;
-      background: #fff;
-      margin-top: 35px;
+   .login-box {
       padding: 20px;
-      border-radius: 12px;
+    }
 
-      h2 {
+    .heading-1 {
         width: 518px;
         flex-shrink: 0;
         font-family: "Brutal Milk No 2", Arial, sans-serif;
@@ -51,9 +47,8 @@
         -webkit-text-fill-color: transparent;
         margin-bottom: 10px;
       }
-    }
 
-    .subheading-text {
+    .heading-2 {
       width: 373px;
       height: 25px;
       color: #797979;
@@ -64,9 +59,8 @@
     }
 
     // Form Controls
-    .form-control {
-    //   width: 436.471px;
-      height: 42.824px;
+    .input-1 {
+      height: 50px;
       border-radius: 13.176px;
       border: 0.824px solid #BFBFBF;
       background: #F9F9F9;
@@ -103,7 +97,7 @@
     }
 
     .forgot-password {
-      width: 168px;
+      // width: 168px;
       height: 19px;
       text-align: right;
       font-family: "Plus Jakarta Sans", Arial, sans-serif;
@@ -121,7 +115,7 @@
       }
     }
 
-    .btn-login {
+    .btn-1 {
       display: flex;
       width: 435px;
       height: 46px;
@@ -148,7 +142,7 @@
     }
 
     // Google Button
-    .google-btn {
+    .g-btn {
       display: flex;
       width: 180px;
       height: 43px;
