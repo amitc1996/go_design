@@ -2,213 +2,374 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SaaS Landing Page</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SaaS & App Landing</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      font-family: "Plus Jakarta Sans", sans-serif;
-      background: #fff;
-      color: #0c0c0c;
+      background: linear-gradient(180deg, #0b1335 0%, #e9edfe 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #1a2236;
     }
-    .navbar {
-      background: #0c0c0c;
+    .bg-blur {
+      background: rgba(16,30,54,0.99);
+      box-shadow: 0 8px 40px rgba(22,26,60,0.12);
+      border-radius: 20px;
+      padding: 32px 20px;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    .nav-section {
+      background: #141b38;
+      padding: 16px 0;
+      box-shadow: 0 2px 20px rgba(16,30,54,0.12);
+    }
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 1.36rem;
     }
     .hero {
-      background: linear-gradient(135deg, #485DFF, #779BFF, #5199FE);
-      color: white;
-      padding: 100px 0;
-      text-align: center;
+      background: linear-gradient(110deg, #112164 0%, #283589 80%);
+      color: #fff;
+      border-radius: 22px;
+      margin-top: 22px;
+      box-shadow: 0 4px 32px rgba(20,22,60,0.12);
     }
-    .hero h1 {
-      font-size: 3rem;
+    .hero-title {
+      font-size: 2.1rem;
       font-weight: 700;
+      margin-bottom: 5px;
+      margin-top: 32px;
     }
-    .section {
-      padding: 80px 0;
+    .hero-desc {
+      font-size: 1.15rem;
+      margin-bottom: 30px;
+      opacity: 0.93;
     }
-    .card-custom {
-      border-radius: 15px;
-      border: 1px solid #DADDE3;
-      background: #EFEFF1;
-      padding: 20px;
+    .hero .btn {
+      font-size: 1.07rem;
+      font-weight: 600;
+      padding: 0.7rem 2.3rem;
+      border-radius: 8px;
+    }
+    .platforms img { filter: drop-shadow(0 2px 8px #2b3de8); }
+    .section-head {
+      font-weight: 700;
+      font-size: 1.35rem;
+      margin-bottom: 20px;
+      color: #182964;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(37,60,196,0.09);
+      padding: 22px 10px 10px 10px;
       text-align: center;
-      transition: 0.3s;
+      margin-bottom: 15px;
+      min-height: 150px;
     }
-    .card-custom:hover {
-      transform: translateY(-5px);
-      box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    .feature-card h6 {
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #003be5;
     }
-    .pricing {
-      background: #0c0c0c;
-      color: white;
-      padding: 80px 0;
+    .stats-card {
+      background: linear-gradient(90deg, #e2e9fd 70%, #f7faff 100%);
+      border-radius: 16px;
+      box-shadow: 0 2px 14px rgba(34,38,68,0.06);
+      padding: 28px 0;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+    .stats-card .stat-figure {
+      font-size: 2rem;
+      font-weight: 640;
+      color: #1e2e75;
+      margin-bottom: 1px;
+    }
+    .stats-card .stat-label {
+      font-size: 1.07rem;
+      color: #151d35;
+      opacity: 0.9;
+      margin-bottom: 2px;
+    }
+    .price-section {
+      background: #f7faff;
+      border-radius: 16px;
+      padding: 44px 0 0 0;
+      margin-bottom: 16px;
+    }
+    .price-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(38,43,82,0.04);
+      padding: 32px 22px 22px 22px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .price {
+      font-size: 2rem;
+      font-weight: 780;
+      color: #1a3286;
+      margin-bottom: 2px;
+    }
+    .accordion-button {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #223885;
+      background: #eef2fc;
+    }
+    .accordion-body {
+      background: #f6f8fd;
+      color: #16359a;
+    }
+    .tags {
+      margin-top: 24px;
+      margin-bottom: 5px;
+    }
+    .tags .badge {
+      background: linear-gradient(90deg,#5f72ff 0%,#2562e7 100%);
+      color: #fff;
+      font-weight: 500;
+      margin: 0 4px;
+      border-radius: 8px;
+      font-size: 1rem;
+      padding: 0.4em 1em;
     }
     .footer {
-      background: #0c0c0c;
-      color: #aaa;
-      padding: 40px 0;
+      background: #111938;
+      color: #b6bacf;
+      padding: 28px 0 12px 0;
+      font-size: 1.08rem;
+      margin-top: 32px;
     }
     .footer a {
-      color: #fff;
-      text-decoration: none;
+      color: #e0e6f7;
+      opacity: 0.95;
+    }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 1.35rem; }
+      .feature-card { min-height: 120px; }
+      .stats-card .stat-figure { font-size: 1.3rem; }
+      .price-card .price { font-size: 1.35rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">SaaSify</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Docs</a></li>
-        <li class="nav-item"><a class="btn btn-primary ms-2" href="#">Sign Up</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Hero -->
-<section class="hero">
-  <div class="container">
-    <h1>Modern & Powerful SaaS Landing Page</h1>
-    <p class="lead">Launch your SaaS product with a stunning landing page built with Bootstrap</p>
-    <a href="#" class="btn btn-light btn-lg mt-3">Get Started</a>
-  </div>
-</section>
-
-<!-- Features -->
-<section class="section">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-md-3">
-        <div class="card-custom">
-          <i class="fa-solid fa-bolt fa-2x mb-3"></i>
-          <h5>Fast</h5>
-          <p>Blazing fast performance with modern design.</p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card-custom">
-          <i class="fa-solid fa-lock fa-2x mb-3"></i>
-          <h5>Secure</h5>
-          <p>Top-notch security with best practices.</p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card-custom">
-          <i class="fa-solid fa-chart-line fa-2x mb-3"></i>
-          <h5>Analytics</h5>
-          <p>Track and optimize your SaaS growth.</p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card-custom">
-          <i class="fa-solid fa-cloud fa-2x mb-3"></i>
-          <h5>Cloud</h5>
-          <p>Fully hosted and scalable cloud solution.</p>
-        </div>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg nav-section">
+    <div class="container">
+      <a class="navbar-brand text-white" href="#">Template</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active text-white" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="#">Features</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="#">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="#">Docs</a></li>
+          <li class="nav-item"><a class="nav-link btn btn-primary ms-2 px-4 py-1 text-white" href="#">Sign Up</a></li>
+        </ul>
       </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- Pricing -->
-<section class="pricing text-center">
+  <!-- Hero Section -->
   <div class="container">
-    <h2 class="mb-4">Pricing Plans</h2>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card bg-light text-dark">
-          <div class="card-body">
-            <h5>Basic</h5>
-            <h3>$19<span>/mo</span></h3>
-            <ul class="list-unstyled">
-              <li>✔ Feature 1</li>
-              <li>✔ Feature 2</li>
-              <li>✔ Feature 3</li>
-            </ul>
-            <a href="#" class="btn btn-primary">Choose Plan</a>
+    <div class="hero bg-blur">
+      <div class="hero-title">Template for SaaS & App Landing</div>
+      <div class="hero-desc">A modern, customizable landing page for SaaS, web apps, and startups. Responsive, fast, and beautiful UX for high conversion.</div>
+      <a href="#" class="btn btn-light text-primary me-3">Get Started</a>
+      <a href="#" class="btn btn-outline-light">Live Demo</a>
+      <div class="platforms row justify-content-center mt-4">
+        <div class="col-auto"><img src="https://img.icons8.com/color/48/000000/windows-10.png" width="42" alt="Windows"></div>
+        <div class="col-auto"><img src="https://img.icons8.com/color/48/000000/android-os.png" width="42" alt="Android"></div>
+        <div class="col-auto"><img src="https://img.icons8.com/color/48/000000/apple-logo.png" width="42" alt="Apple"></div>
+      </div>
+      <div class="mt-4 small text-white-50">Available for Web, iOS & Android</div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="container section">
+    <div class="section-head text-center">What Makes Template Special?</div>
+    <div class="row gy-2 gx-2">
+      <div class="col-md-3 col-6">
+        <div class="feature-card">
+          <h6>Customizable</h6>
+          <p>Change colors, layout, and content easily to match your brand.</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="feature-card">
+          <h6>Responsive</h6>
+          <p>Looks great on desktops, tablets, and smartphones.</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="feature-card">
+          <h6>Modern UI</h6>
+          <p>Clean, attractive design with gradients and fonts.</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="feature-card">
+          <h6>Easy Integration</h6>
+          <p>Fast to set up and compatible with modern frameworks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overview Screenshots -->
+  <div class="container section">
+    <div class="section-head text-center">How It Works?</div>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-4 mb-3">
+        <img src="https://img.icons8.com/fluency/96/000000/computer.png" class="img-fluid rounded shadow" alt="Screenshot Desktop">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="https://img.icons8.com/fluency/96/000000/tablet.png" class="img-fluid rounded shadow" alt="Screenshot Tablet">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="https://img.icons8.com/fluency/96/000000/smartphone.png" class="img-fluid rounded shadow" alt="Screenshot Phone">
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <div class="container section">
+    <div class="row justify-content-center">
+      <div class="col-md-3 col-6 stats-card">
+        <div class="stat-figure">25k+</div>
+        <div class="stat-label">Users</div>
+      </div>
+      <div class="col-md-3 col-6 stats-card">
+        <div class="stat-figure">99.99%</div>
+        <div class="stat-label">Uptime</div>
+      </div>
+      <div class="col-md-3 col-6 stats-card">
+        <div class="stat-figure">150+</div>
+        <div class="stat-label">Integrations</div>
+      </div>
+      <div class="col-md-3 col-6 stats-card">
+        <div class="stat-figure">24/7</div>
+        <div class="stat-label">Support</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing Section -->
+  <div class="container section price-section">
+    <div class="text-center mb-5">
+      <div class="section-head">Simple Pricing Plans</div>
+      <div class="text-muted">Choose the plan that's right for your team.</div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-4 col-12 mb-4">
+        <div class="price-card">
+          <div class="price">$29</div>
+          <div class="text-muted mb-2">per month</div>
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item">All features</li>
+            <li class="list-group-item">Unlimited users</li>
+            <li class="list-group-item">Priority support</li>
+            <li class="list-group-item">Free updates</li>
+          </ul>
+          <a class="btn btn-primary w-100" href="#">Start Now</a>
+        </div>
+      </div>
+      <div class="col-md-4 col-12 mb-4">
+        <div class="price-card">
+          <div class="price">$49</div>
+          <div class="text-muted mb-2">per month</div>
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item">Everything in Basic</li>
+            <li class="list-group-item">Advanced analytics</li>
+            <li class="list-group-item">Dedicated manager</li>
+          </ul>
+          <a class="btn btn-outline-primary w-100" href="#">Get Pro</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="container section">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="section-head text-center">Frequently Asked Questions</div>
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq1">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#f1">
+                How do I get started?
+              </button>
+            </h2>
+            <div id="f1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Sign up and follow our quick start guide.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq2">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">
+                Can I cancel anytime?
+              </button>
+            </h2>
+            <div id="f2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Yes, you can cancel or change your plan at any time.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq3">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f3">
+                Is there a free trial?
+              </button>
+            </h2>
+            <div id="f3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">We offer a 14-day free trial for all new accounts.</div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card bg-primary text-white">
-          <div class="card-body">
-            <h5>Pro</h5>
-            <h3>$49<span>/mo</span></h3>
-            <ul class="list-unstyled">
-              <li>✔ Feature 1</li>
-              <li>✔ Feature 2</li>
-              <li>✔ Feature 3</li>
-              <li>✔ Feature 4</li>
-            </ul>
-            <a href="#" class="btn btn-light">Choose Plan</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card bg-light text-dark">
-          <div class="card-body">
-            <h5>Enterprise</h5>
-            <h3>$99<span>/mo</span></h3>
-            <ul class="list-unstyled">
-              <li>✔ All Pro Features</li>
-              <li>✔ Dedicated Support</li>
-              <li>✔ Unlimited Usage</li>
-            </ul>
-            <a href="#" class="btn btn-primary">Choose Plan</a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-</section>
 
-<!-- FAQ -->
-<section class="section">
-  <div class="container">
-    <h2 class="text-center mb-5">Frequently Asked Questions</h2>
-    <div class="accordion" id="faqAccordion">
-      <div class="accordion-item">
-        <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">What is this?</button></h2>
-        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">This is a modern SaaS landing page built with Bootstrap 5.</div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">How to use it?</button></h2>
-        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">Simply copy the code, customize, and deploy to your hosting.</div>
-        </div>
+  <!-- Tags Section -->
+  <div class="container text-center tags">
+    <span class="badge">SaaS</span>
+    <span class="badge">Startup</span>
+    <span class="badge">App</span>
+    <span class="badge">Bootstrap</span>
+    <span class="badge">Landing</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer mt-5">
+    <div class="container">
+      <div>© 2025 Template SaaS. All rights reserved.</div>
+      <div class="mt-2">
+        <a href="#" class="me-3">Terms</a>
+        <a href="#" class="me-3">Privacy</a>
+        <a href="#">Contact</a>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- Footer -->
-<footer class="footer text-center">
-  <div class="container">
-    <p>&copy; 2025 SaaSify. All rights reserved.</p>
-    <div>
-      <a href="#"><i class="fab fa-twitter me-3"></i></a>
-      <a href="#"><i class="fab fa-facebook me-3"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
-    </div>
-  </div>
-</footer>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap Bundle 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Optional: Smooth scroll for anchor tags (can remove if unwanted)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>

@@ -15,5 +15,6 @@ backend/src/yarn-error.log*
 
 frontend/node_modules/
 frontend/dist/
+frontend/build/
 
 .vscode/
