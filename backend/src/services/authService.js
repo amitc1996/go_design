@@ -8,7 +8,29 @@ const signup = async (data) => {
   const user = await User.create(data);
   const accessToken = generateAccessToken(user.id);
   const refreshToken = generateRefreshToken(user.id);
-  return { ...user.toJSON(), accessToken, refreshToken, token_type: "bearer", expires_in: 1800 };
+
+  return {
+    success: true,
+    message: "Registration successful",
+    data: {
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        username: user.username,
+        role: user.role,
+        is_active: user.is_active,
+        created_at: user.createdAt,
+        updated_at: user.updatedAt,
+      },
+      tokens: {
+        access_token: accessToken,
+        refresh_token: refreshToken,
+        token_type: "Bearer",
+        expires_in: 1800,
+      },
+    },
+  };
 };
 
 const login = async (email, password) => {
@@ -16,16 +38,51 @@ const login = async (email, password) => {
   if (user && (await user.matchPassword(password))) {
     const accessToken = generateAccessToken(user.id);
     const refreshToken = generateRefreshToken(user.id);
-    return { ...user.toJSON(), accessToken, refreshToken, token_type: "bearer", expires_in: 1800 };
+
+    return {
+      success: true,
+      message: "Login successful",
+      data: {
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          username: user.username,
+          role: user.role,
+          is_active: user.is_active,
+          created_at: user.createdAt,
+          updated_at: user.updatedAt,
+        },
+        tokens: {
+          access_token: accessToken,
+          refresh_token: refreshToken,
+          token_type: "Bearer",
+          expires_in: 1800,
+        },
+      },
+    };
   }
   throw new Error("Invalid email or password");
 };
 
 const refreshAccessToken = async (refreshToken) => {
   try {
-    const payload = require("jsonwebtoken").verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+    const payload = require("jsonwebtoken").verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET
+    );
     const accessToken = generateAccessToken(payload.id);
-    return { accessToken, token_type: "bearer", expires_in: 1800 };
+    return {
+      success: true,
+      message: "Access token refreshed",
+      data: {
+        tokens: {
+          access_token: accessToken,
+          token_type: "Bearer",
+          expires_in: 1800,
+        },
+      },
+    };
   } catch (err) {
     throw new Error("Invalid or expired refresh token");
   }
@@ -42,15 +99,16 @@ const forgotPassword = async (email) => {
 
   const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
   await sendEmail(user.email, "Password Reset", `Reset here: ${resetUrl}`);
-  return { message: "Password reset email sent" };
+
+  return { success: true, message: "Password reset email sent" };
 };
 
 const resetPassword = async (token, newPassword) => {
   const user = await User.findOne({
     where: {
       resetToken: token,
-      resetTokenExpire: { [Op.gt]: Date.now() }
-    }
+      resetTokenExpire: { [Op.gt]: Date.now() },
+    },
   });
 
   if (!user) throw new Error("Invalid or expired token");
@@ -60,7 +118,7 @@ const resetPassword = async (token, newPassword) => {
   user.resetTokenExpire = null;
   await user.save();
 
-  return { message: "Password reset successful" };
+  return { success: true, message: "Password reset successful" };
 };
 
 export default { signup, login, forgotPassword, resetPassword, refreshAccessToken };
