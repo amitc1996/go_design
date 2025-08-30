@@ -65,22 +65,11 @@ const User = sequelize.define("user", {
   new_email_token: { 
     type: DataTypes.STRING(255),
     allowNull: true,
-  },
-  created_at: { 
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
-  updated_at: { 
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
-  deleted_at: { 
-    type: DataTypes.DATE,
-    allowNull: true,
-  },
+  }
 }, {
-  timestamps: false,
-  paranoid: true,     
+  timestamps: true,       // ✅ created_at & updated_at managed automatically
+  paranoid: true,         // ✅ enables deleted_at for soft deletes
+  underscored: true,      // ✅ use snake_case column names
   hooks: {
     beforeCreate: async (user) => {
       user.password = await bcrypt.hash(user.password, 10);
@@ -93,11 +82,10 @@ const User = sequelize.define("user", {
   }
 });
 
-
+// Instance methods
 User.prototype.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
-
 
 User.prototype.addToWallet = async function (amount) {
   this.wallet_balance = parseFloat(this.wallet_balance) + parseFloat(amount);

@@ -97,15 +97,12 @@ export default function Login() {
               <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap">
                 <div className="form-check">
                   <input
-                    className={`form-check-input ${errors.terms ? "is-invalid" : ""}`}
+                    className={`form-check-input}`}
                     type="checkbox"
-                    id="termsCheck"
-                    {...register("terms", {
-                      required: "You must agree to the Terms & Privacy",
-                    })}
+                    id="rememberCheck"
                   />
-                  <label htmlFor="termsCheck" className="small ms-1 terms-label">
-                    I agree to the Terms & Privacy
+                  <label htmlFor="rememberCheck" className="small ms-1 remember-label">
+                    Remember me
                   </label>
                   {errors.terms && (
                     <div className="invalid-feedback d-block">{errors.terms.message}</div>

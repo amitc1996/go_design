@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react'
 import { tokenStorage } from '../utils/token'
+import api from '../services/api'
 import * as authApi from '../api/auth'
 
 const AuthStateContext = createContext()
