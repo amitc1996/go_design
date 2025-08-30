@@ -1,13 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LogoImg1 from "src/assets/img/logo.png";
 import "./AppHeader.scss";
 import WalletModal from "./WalletModal";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { rechargeWallet } from "./paymentHelper";
 
 const AppHeader = () => {
   const [showModal, setShowModal] = useState(false);
+  const [balance, setBalance] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const userId = 1;
+
+  const fetchBalance = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/wallet/balance/${userId}`
+      );
+      setBalance(res.data.balance);
+    } catch (error) {
+      console.error("Failed to fetch balance:", error);
+    }
+  };
 
   const handleRechargeClick = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
+
+  // 🔹 Main recharge handler
+  const handleAddCredit = async (amount) => {
+    setLoading(true);
+    try {
+      const result = await rechargeWallet({
+        amount: Number(amount),
+        userId,
+        onCheckoutOpen: handleClose,
+      });
+
+      console.log("Payment success:", result);
+      toast.success("Recharge successful");
+      fetchBalance();
+    } catch (error) {
+      console.error("Payment failed:", error.message);
+      toast.error(error.message || "Payment failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchBalance();
+  }, []);
 
   return (
     <>
@@ -39,7 +82,7 @@ const AppHeader = () => {
               />
               <circle cx="5" cy="8" r="1.2" fill="#485DFF" />
             </svg>
-            <span className="wallet-balance-amount">$1,240</span>
+            <span className="wallet-balance-amount">${balance}</span>
           </div>
           <button className="btn-recharge" onClick={handleRechargeClick}>
             Recharge
@@ -48,7 +91,26 @@ const AppHeader = () => {
         </div>
       </header>
 
-      {showModal && <WalletModal onClose={handleClose} />}
+      {/* Pass handler & loading state to WalletModal */}
+      {showModal && (
+        <WalletModal
+          onClose={handleClose}
+          onAddCredit={handleAddCredit}
+          loading={loading}
+        />
+      )}
+
+      {/* Toast notifications container */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="colored"
+      />
     </>
   );
 };

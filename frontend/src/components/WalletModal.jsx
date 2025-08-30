@@ -1,23 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { rechargeWallet } from "./paymentHelper";
 
-const WalletModal = ({ onClose }) => {
+const WalletModal = ({ onClose, onAddCredit, loading }) => {
   const [amount, setAmount] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  const handleAddCredit = async () => {
-    setLoading(true);
-    try {
-      const result = await rechargeWallet({ amount: 22, userId: 1, onCheckoutOpen: onClose });
-      console.log("Payment success:", result);
-      alert("Recharge successful ✅");
-      // refresh balance here...
-    } catch (error) {
-      console.error("Payment failed:", error.message);
-      alert(error.message);
-    } finally {
-      setLoading(false);
-    }
+  const handleSubmit = () => {
+    if (!amount || Number(amount) <= 0) return;
+    onAddCredit(amount);
   };
 
   useEffect(() => {
@@ -57,10 +45,10 @@ const WalletModal = ({ onClose }) => {
           <button
             type="button"
             className="btn-add-credits"
-            onClick={handleAddCredit}
-            disabled={!amount || Number(amount) <= 0}
+            onClick={handleSubmit}
+            disabled={!amount || Number(amount) <= 0 || loading}
           >
-            Add Credits
+            {loading ? "Processing..." : "Add Credits"}
           </button>
         </div>
       </div>
