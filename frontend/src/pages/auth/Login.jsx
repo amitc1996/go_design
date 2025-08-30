@@ -49,7 +49,7 @@ export default function Login() {
 
         {/* Right Section (Form) */}
         <div className="col-12 col-md-6 d-flex justify-content-center align-items-center p-4">
-          <div className="login-box w-100" style={{ maxWidth: "400px" }}>
+          <div className="box-1 w-100" style={{ maxWidth: "400px" }}>
             <h2 className="mb-2 heading-1">Get Started Now</h2>
             <p className="text-muted mb-4 heading-2">Login into your account to continue</p>
             <form onSubmit={submit}>

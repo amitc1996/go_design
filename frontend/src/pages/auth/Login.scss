@@ -1,207 +1,186 @@
 /* Prevent horizontal scroll */
-    // html, body {
-    //   overflow-x: hidden;
-    // }
 
-    // body {
-    //   font-family: Arial, sans-serif;
-    //   font-weight: 400;
-    // }
+body {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+}
 
-    // Left Section
-    .left-section {
-      background: linear-gradient(to bottom, #000000 0%, #1a1f5c 40%, #2e49ff 100%);
-      border-radius: 20px;
-      height: 100%;
+// Left Section
+.left-section {
+  background: linear-gradient(to bottom, #000000 0%, #1a1f5c 40%, #2e49ff 100%);
+  border-radius: 20px;
 
-      img {
-        max-width: 380px;
-        border-radius: 45px;
-        width: 100%;
-      }
-    }
+  img {
+    max-width: 380px;
+    border-radius: 45px;
+    width: 100%;
+  }
+}
 
-    // Right Section
-    // .right-section {
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    //   height: 100%;
-    // }
+// Login Box
+.box-1 {
+  padding: 20px;
+}
 
-    // Login Box
-   .login-box {
-      padding: 20px;
-    }
+.heading-1 {
+  width: 518px;
+  flex-shrink: 0;
+  font-family: "Brutal Milk No 2", Arial, sans-serif;
+  font-size: 45.344px;
+  font-weight: 400;
+  line-height: 50px;
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
 
-    .heading-1 {
-        width: 518px;
-        flex-shrink: 0;
-        font-family: "Brutal Milk No 2", Arial, sans-serif;
-        font-size: 45.344px;
-        font-weight: 400;
-        line-height: 50px;
-        background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 10px;
-      }
+.heading-2 {
+  width: 373px;
+  height: 25px;
+  color: #797979;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  font-size: 19px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
 
-    .heading-2 {
-      width: 373px;
-      height: 25px;
-      color: #797979;
-      font-family: "Plus Jakarta Sans", Arial, sans-serif;
-      font-size: 19px;
-      font-weight: 500;
-      margin-bottom: 24px;
-    }
+// Form Controls
+.input-1 {
+  height: 50px;
+  border-radius: 13.176px;
+  border: 0.824px solid #BFBFBF;
+  background: #F9F9F9;
+  font-size: 15px;
+  padding: 12px 14px;
 
-    // Form Controls
-    .input-1 {
-      height: 50px;
-      border-radius: 13.176px;
-      border: 0.824px solid #BFBFBF;
-      background: #F9F9F9;
-      font-size: 15px;
-      padding: 12px 14px;
+  &::placeholder {
+    color: #797979;
+    font-family: "Plus Jakarta Sans", Arial, sans-serif;
+    font-size: 15.647px;
+    font-weight: 500;
+  }
+}
 
-      &::placeholder {
-        color: #797979;
-        font-family: "Plus Jakarta Sans", Arial, sans-serif;
-        font-size: 15.647px;
-        font-weight: 500;
-      }
-    }
+.form-label {
+  font-family: "Brutal Milk No 2", Arial, sans-serif;
+}
 
-    .form-label {
-      display: flex;
-      width: 426.588px;
-      height: 25.529px;
-      color: #000;
-      font-family: "Brutal Milk No 2", Arial, sans-serif;
-      font-size: 19.765px;
-      font-weight: 400;
-      line-height: 41.176px;
-      margin-bottom: 6px;
-    }
+.terms-label {
+  width: 232px;
+  height: 19px;
+  color: #000;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+}
 
-    .terms-label {
-      width: 232px;
-      height: 19px;
-      color: #000;
-      font-family: "Plus Jakarta Sans", Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-    }
+.forgot-password {
+  height: 19px;
+  text-align: right;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  display: inline-block;
 
-    .forgot-password {
-      // width: 168px;
-      height: 19px;
-      text-align: right;
-      font-family: "Plus Jakarta Sans", Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-decoration: none;
-      display: inline-block;
+  &:hover {
+    opacity: 0.8;
+  }
+}
 
-      &:hover {
-        opacity: 0.8;
-      }
-    }
+.btn-1 {
+  display: flex;
+  width: 435px;
+  height: 46px;
+  padding: 16.667px 22.222px;
+  justify-content: center;
+  align-items: center;
+  gap: 13.889px;
+  border: none;
+  border-radius: 15.278px;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  box-shadow: 0px 4px 10px rgba(72, 93, 255, 0.4);
+  transition: 0.3s ease;
 
-    .btn-1 {
-      display: flex;
-      width: 435px;
-      height: 46px;
-      padding: 16.667px 22.222px;
-      justify-content: center;
-      align-items: center;
-      gap: 13.889px;
-      border: none;
-      border-radius: 15.278px;
-      font-family: "Plus Jakarta Sans", Arial, sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      color: #fff;
-      background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
-      box-shadow: 0px 4px 10px rgba(72, 93, 255, 0.4);
-      transition: 0.3s ease;
+  &:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+    color: #fff;
+    box-shadow: 0px 6px 14px rgba(72, 93, 255, 0.55);
+  }
+}
 
-      &:hover {
-        opacity: 0.95;
-        transform: translateY(-1px);
-        color: #fff;
-        box-shadow: 0px 6px 14px rgba(72, 93, 255, 0.55);
-      }
-    }
+// Google Button
+.g-btn {
+  display: flex;
+  width: 180px;
+  height: 43px;
+  padding: 9px 17px;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+  border-radius: 13.176px;
+  border: 0.824px solid #BFBFBF;
+  background: #F9F9F9;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: 0.3s ease;
 
-    // Google Button
-    .g-btn {
-      display: flex;
-      width: 180px;
-      height: 43px;
-      padding: 9px 17px;
-      align-items: center;
-      gap: 15px;
-      flex-shrink: 0;
-      border-radius: 13.176px;
-      border: 0.824px solid #BFBFBF;
-      background: #F9F9F9;
-      font-family: "Plus Jakarta Sans", Arial, sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      color: #000;
-      margin: 0 auto;
-      cursor: pointer;
-      transition: 0.3s ease;
+  &:hover {
+    background: #f1f1f1;
+  }
 
-      &:hover {
-        background: #f1f1f1;
-      }
+  img {
+    width: 18px;
+    height: 18px;
+  }
+}
 
-      img {
-        width: 18px;
-        height: 18px;
-      }
-    }
+.signup-text {
+  height: 19px;
+  color: #000;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+}
 
-    .signup-text {
-      height: 19px;
-      color: #000;
-      font-family: "Plus Jakarta Sans", Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      text-align: center;
-    }
+.signup-link {
+  background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
 
-    .signup-link {
-      background: linear-gradient(90deg, #485DFF 0.01%, #779BFF 56.36%, #5199FE 102.41%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-family: "Plus Jakarta Sans", Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      text-decoration: none;
+  &:hover {
+    opacity: 0.8;
+  }
+}
 
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
-    .login-img1{
-        max-width: 100%;
-        height: auto;
-    }
+.login-img1 {
+  max-width: 100%;
+  height: auto;
+}
 
 
-    .google-login-btn {
+.google-login-btn {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -213,15 +192,17 @@
   font-weight: 500;
   color: #353845;
   cursor: pointer;
-  box-shadow: 0 1px 6px rgba(50,70,120,0.07);
+  box-shadow: 0 1px 6px rgba(50, 70, 120, 0.07);
   transition: box-shadow 0.12s;
   outline: none;
 }
+
 .google-login-btn:hover,
 .google-login-btn:focus {
-  box-shadow: 0 2px 8px rgba(50,70,120,0.12);
+  box-shadow: 0 2px 8px rgba(50, 70, 120, 0.12);
   border-color: #d1d8ee;
 }
+
 .google-icon {
   height: 22px;
   width: 22px;
