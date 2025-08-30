@@ -1,8 +1,8 @@
-import React, { Suspense } from "react"
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import { AuthProvider } from "./store/AuthContext"
-import PrivateRoute from "./components/PrivateRoute"
-import routes from "./routes"
+import React, { Suspense } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider } from "./store/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
+import routes from "./routes";
 
 export default function App() {
   return (
@@ -10,19 +10,27 @@ export default function App() {
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            {routes.map(({ path, element, exact }, idx) => (
+            {routes.map(({ path, element: Component, isPrivate }, idx) => (
               <Route
                 key={idx}
                 path={path}
-                element={React.createElement(element)}
-                exact={exact}
+                element={
+                  isPrivate ? (
+                    <PrivateRoute>
+                      <Component />
+                    </PrivateRoute>
+                  ) : (
+                    <Component />
+                  )
+                }
               />
             ))}
 
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            {/* Redirect root to dashboard */}
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
     </AuthProvider>
-  )
+  );
 }

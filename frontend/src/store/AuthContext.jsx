@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react'
-import api from '../services/api'
 import { tokenStorage } from '../utils/token'
+import * as authApi from '../api/auth'
 
 const AuthStateContext = createContext()
 const AuthDispatchContext = createContext()
@@ -61,12 +61,25 @@ export function useAuthDispatch() {
 }
 
 export async function login(dispatch, { email, password, remember = true }) {
-  const res = await api.post('/auth/login', { email, password })
-  const { access_token, refresh_token, user } = res.data
-  tokenStorage.setToken(access_token, { remember })
-  if (refresh_token) tokenStorage.setRefresh(refresh_token)
+  const user = await authApi.login({ email, password, remember })
   dispatch({ type: 'LOGIN', payload: { user } })
   return user
+}
+
+export async function register(dispatch, { name, email, password }) {
+  const data = await authApi.register({ name, email, password })
+  // Optionally, you can dispatch login or other actions here
+  return data
+}
+
+export async function forgotPassword(dispatch, { email }) {
+  const data = await authApi.forgotPassword({ email })
+  return data
+}
+
+export async function resetPassword(dispatch, { token, password }) {
+  const data = await authApi.resetPassword({ token, password })
+  return data
 }
 
 export function logout(dispatch) {
