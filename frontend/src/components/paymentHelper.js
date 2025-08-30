@@ -38,7 +38,7 @@ export const rechargeWallet = async ({ amount, userId , onCheckoutOpen}) => {
       const options = {
         key: "rzp_test_R9WNEHG3V1bTm1",
         currency: order.currency,
-        name: "My Wallet",
+        name: "goDesyn Wallet",
         description: "Wallet Recharge",
         order_id: order.id,
         handler: async (response) => {
@@ -58,6 +58,7 @@ export const rechargeWallet = async ({ amount, userId , onCheckoutOpen}) => {
         prefill: {
           name: "Amit Choudhary",
           email: "amit@yopmail.com",
+          mobile: "1234567890",
         },
         theme: {
           color: "#5E83FF",

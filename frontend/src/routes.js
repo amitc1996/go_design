@@ -2,6 +2,7 @@ import React from "react";
 
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const Wallet = React.lazy(() => import("./pages/Wallet"));
+const Transactions = React.lazy(() => import("./pages/Transactions"));
 const AccountSettings = React.lazy(() => import("./pages/AccountSettings"));
 const Login = React.lazy(() => import("./pages/auth/Login"));
 const Register = React.lazy(() => import("./pages/auth/Register"));
@@ -11,6 +12,7 @@ const ResetPassword = React.lazy(() => import("./pages/auth/ResetPassword"));
 const routes = [
   { path: "/", name: "Home", element: Login, isPrivate: false },
   { path: "/dashboard", name: "Dashboard", element: Dashboard, isPrivate: true },
+  { path: "/transactions", name: "Transactions", element: Transactions, isPrivate: true },
   { path: "/wallet", name: "Wallet", element: Wallet, isPrivate: true },
   { path: "/account-settings", name: "Account Settings", element: AccountSettings, isPrivate: true },
   { path: "/login", name: "Login", element: Login, isPrivate: false },
