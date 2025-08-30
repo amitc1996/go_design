@@ -83,8 +83,10 @@ export async function resetPassword(dispatch, { token, password }) {
   return data
 }
 
-export function logout(dispatch) {
-  tokenStorage.removeToken()
-  tokenStorage.removeRefresh()
-  dispatch({ type: 'LOGOUT' })
+export async function logout(dispatch) {
+  // Optionally, call backend to invalidate refresh token
+  // await api.post('/auth/logout');
+  tokenStorage.removeToken();
+  tokenStorage.removeRefresh();
+  dispatch({ type: 'LOGOUT' });
 }

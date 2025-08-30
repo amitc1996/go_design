@@ -1,9 +1,8 @@
 import { CONFIG } from '../configs'
 
 export const tokenStorage = {
-  setToken: (token, { remember = true } = {}) => {
-    if (remember) localStorage.setItem(CONFIG.TOKEN_KEY, token)
-    else sessionStorage.setItem(CONFIG.TOKEN_KEY, token)
+  setToken: (token) => {
+    localStorage.setItem(CONFIG.TOKEN_KEY, token)
   },
   getToken: () => localStorage.getItem(CONFIG.TOKEN_KEY) || sessionStorage.getItem(CONFIG.TOKEN_KEY),
   removeToken: () => {

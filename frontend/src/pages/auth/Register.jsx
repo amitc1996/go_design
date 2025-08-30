@@ -11,7 +11,6 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState(null);
 
-  // ✅ react-hook-form setup
   const {
     register,
     handleSubmit,
@@ -51,7 +50,7 @@ export default function Register() {
 
         {/* Right Section (Form) */}
         <div className="col-12 col-md-6 d-flex justify-content-center align-items-center p-4">
-          <div className="box-1 w-100" style={{ maxWidth: "450px" }}>
+          <div className="box-1 w-100">
             <h2 className="mb-2 heading-1">Create Account</h2>
             <p className="text-muted mb-4 heading-2">Register to start using GoDesign</p>
 
