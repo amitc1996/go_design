@@ -1,30 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import LogoImg1 from "src/assets/img/logo.png";
-import "./AppHeader.scss"; // import CSS file
+import "./AppHeader.scss";
+import WalletModal from "./WalletModal";
 
 const AppHeader = () => {
   const [showModal, setShowModal] = useState(false);
-  const [amount, setAmount] = useState("");
 
   const handleRechargeClick = () => setShowModal(true);
-  const handleClose = () => {
-    setShowModal(false);
-    setAmount("");
-  };
-  const handleAddCredit = () => {
-    alert(`Added credit: $${amount}`);
-    handleClose();
-  };
-
-  useEffect(() => {
-    if (showModal) {
-      document.body.classList.add("modal-open");
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.classList.remove("modal-open");
-      document.body.style.overflow = "";
-    }
-  }, [showModal]);
+  const handleClose = () => setShowModal(false);
 
   return (
     <>
@@ -65,50 +48,7 @@ const AppHeader = () => {
         </div>
       </header>
 
-      {showModal && (
-        <div
-          className="custom-modal-backdrop"
-          tabIndex="-1"
-          onClick={handleClose}
-        >
-          <div
-            className="custom-modal-card"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="custom-btn-close"
-              onClick={handleClose}
-              aria-label="Close"
-            >
-              &times;
-            </button>
-
-            <div className="modal-title">Recharge Wallet</div>
-
-            <div className="amount-input-row">
-              <input
-                type="text"
-                className="amount-input"
-                value={amount}
-                onChange={(e) =>
-                  setAmount(e.target.value.replace(/[^0-9]/g, ""))
-                }
-                placeholder="$ 0"
-                min="1"
-              />
-              <button
-                type="button"
-                className="btn-add-credits"
-                onClick={handleAddCredit}
-                disabled={!amount || Number(amount) <= 0}
-              >
-                Add Credits
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {showModal && <WalletModal onClose={handleClose} />}
     </>
   );
 };
