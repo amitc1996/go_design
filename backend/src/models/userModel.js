@@ -4,14 +4,9 @@ import sequelize from "../config/db.js";
 
 const User = sequelize.define("user", {
   id: { 
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
     autoIncrement: true,
     primaryKey: true,
-  },
-  email: { 
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    unique: true,
   },
   first_name: { 
     type: DataTypes.STRING(255),
@@ -21,17 +16,23 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING(255),   
     allowNull: false,
   },
-  phone: { 
-    type: DataTypes.STRING(50),
-    allowNull: false,
-  },
-  company_name: { 
+  email: { 
     type: DataTypes.STRING(255),
-    allowNull: true,
+    allowNull: false,
+    unique: true,
   },
   password: { 
     type: DataTypes.STRING(255),
     allowNull: false,
+  },
+  phone: { 
+    type: DataTypes.STRING(20),
+    allowNull: true,
+    unique: true,
+  },
+  company_name: { 
+    type: DataTypes.STRING(255),
+    allowNull: true,
   },
   reset_token: { 
     type: DataTypes.STRING(255),
@@ -42,12 +43,13 @@ const User = sequelize.define("user", {
     allowNull: true,
   },
   remember_token: { 
-    type: DataTypes.STRING(100),
+    type: DataTypes.STRING(255),
     allowNull: true,
   },
-  status: { 
-    type: DataTypes.TINYINT,
-    defaultValue: 0,
+  is_active: { 
+    type: DataTypes.BOOLEAN,
+    allowNull: true,
+    defaultValue: 1,
   },
   wallet_balance: { 
     type: DataTypes.DECIMAL(10, 2),
@@ -65,14 +67,33 @@ const User = sequelize.define("user", {
   new_email_token: { 
     type: DataTypes.STRING(255),
     allowNull: true,
+  },
+  last_login: { 
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  role: { 
+    type: DataTypes.STRING(50),
+    allowNull: true,
+    defaultValue: "user",
+  },
+  created_by: { 
+    type: DataTypes.BIGINT,
+    allowNull: true,
+  },
+  updated_by: { 
+    type: DataTypes.BIGINT,
+    allowNull: true,
   }
 }, {
-  timestamps: true,       // ✅ created_at & updated_at managed automatically
-  paranoid: true,         // ✅ enables deleted_at for soft deletes
-  underscored: true,      // ✅ use snake_case column names
+  timestamps: true,      
+  paranoid: true,       
+  underscored: true,     
   hooks: {
     beforeCreate: async (user) => {
-      user.password = await bcrypt.hash(user.password, 10);
+      if (user.password) {
+        user.password = await bcrypt.hash(user.password, 10);
+      }
     },
     beforeUpdate: async (user) => {
       if (user.changed("password")) {
@@ -82,19 +103,19 @@ const User = sequelize.define("user", {
   }
 });
 
-// Instance methods
+
 User.prototype.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
 User.prototype.addToWallet = async function (amount) {
-  this.wallet_balance = parseFloat(this.wallet_balance) + parseFloat(amount);
+  this.wallet_balance = parseFloat(this.wallet_balance || 0) + parseFloat(amount);
   await this.save();
   return this.wallet_balance;
 };
 
 User.prototype.deductFromWallet = async function (amount) {
-  if (parseFloat(this.wallet_balance) < parseFloat(amount)) {
+  if (parseFloat(this.wallet_balance || 0) < parseFloat(amount)) {
     throw new Error("Insufficient wallet balance");
   }
   this.wallet_balance = parseFloat(this.wallet_balance) - parseFloat(amount);
