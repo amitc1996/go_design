@@ -1,47 +1,92 @@
-import React, { useState } from 'react'
-import api from '../../services/api'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../../services/api";
+import "./Password.scss";
 
 export default function ResetPassword() {
-  const [token, setToken] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function submit(e) {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    setLoading(true);
     try {
-      await api.post('/auth/reset', { token, password })
-      alert('Password reset successful')
-      navigate('/login')
+      // assuming token comes from query param
+      const token = new URLSearchParams(window.location.search).get("token");
+      if (!token) {
+        alert("Invalid or missing reset token");
+        return;
+      }
+
+      await api.post("/auth/reset", { email, token, password });
+      alert("Password reset successful");
+      navigate("/login");
     } catch (err) {
-      alert(err.response?.data?.message || 'Reset failed')
+      alert(err.response?.data?.message || "Reset failed");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="w-full max-w-md bg-white p-6 rounded shadow">
-        <h2 className="text-2xl mb-4">Reset password</h2>
-        <form onSubmit={submit}>
-          <label className="block mb-4">
-            <div className="text-sm mb-1">Reset token</div>
-            <input className="w-full border rounded px-3 py-2" value={token} onChange={(e) => setToken(e.target.value)} required />
-          </label>
+    <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
+      <div className="login-block">
+        <h2 className="forgot-title">Reset password</h2>
+        <p className="forgot-subtitle">
+          Enter your email and new password to continue
+        </p>
 
-          <label className="block mb-4">
-            <div className="text-sm mb-1">New password</div>
-            <input className="w-full border rounded px-3 py-2" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          </label>
+        <form className="w-100" onSubmit={submit}>
+          <div className="mb-3">
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-          <button type="submit" className="w-full py-2 rounded bg-indigo-600 text-white" disabled={loading}>
-            {loading ? 'Resetting...' : 'Reset password'}
+          <div className="mb-3">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="New Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit" className="btn btn-send" disabled={loading}>
+            {loading ? "Resetting..." : "Reset Password"}
           </button>
         </form>
+
+        <Link to="/login" className="back-link">
+          &lt; Back to Sign in
+        </Link>
       </div>
     </div>
-  )
+  );
 }

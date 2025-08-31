@@ -1,48 +1,72 @@
-import React, { useState } from 'react'
-import api from '../../services/api'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import api from "../../services/api";
+import "./Password.scss";
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [sent, setSent] = useState(false)
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
 
   async function submit(e) {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
     try {
-      await api.post('/auth/forgot', { email })
-      setSent(true)
+      await api.post("/auth/forgot", { email });
+      setSent(true);
     } catch (err) {
-      alert(err.response?.data?.message || 'Failed to send reset email')
+      alert(err.response?.data?.message || "Failed to send reset email");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="w-full max-w-md bg-white p-6 rounded shadow">
-        <h2 className="text-2xl mb-4">Forgot password</h2>
+    <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
+      <div className="login-block">
         {!sent ? (
-          <form onSubmit={submit}>
-            <label className="block mb-4">
-              <div className="text-sm mb-1">Email</div>
-              <input className="w-full border rounded px-3 py-2" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            </label>
-            <button type="submit" className="w-full py-2 rounded bg-yellow-600 text-white" disabled={loading}>
-              {loading ? 'Sending...' : 'Send reset link'}
-            </button>
-          </form>
+          <>
+            <h2 className="forgot-title">Forgot password?</h2>
+            <p className="forgot-subtitle">
+              Enter your details to receive a reset link
+            </p>
+
+            <form id="forgotForm" className="w-100" onSubmit={submit}>
+              <div className="mb-3">
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Your Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-send"
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Send"}
+              </button>
+            </form>
+
+            <Link to="/login" className="back-link">
+              &lt; Back to Sign in
+            </Link>
+          </>
         ) : (
-          <div>
-            <p>We've sent a password reset link to your email (simulated).</p>
-            <div className="mt-3">
-              <Link to="/login" className="underline">Return to login</Link>
-            </div>
-          </div>
+          <>
+            <h2 className="forgot-title">Check your email</h2>
+            <p className="forgot-subtitle">
+              We've sent a password reset link to your email.
+            </p>
+            <Link to="/login" className="back-link">
+              &lt; Back to Sign in
+            </Link>
+          </>
         )}
       </div>
     </div>
-  )
+  );
 }
