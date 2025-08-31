@@ -20,7 +20,7 @@ export default function ForgotPassword() {
     setLoading(true);
     setError(null);
     try {
-      await api.post("/auth/forgot", { email: data.email });
+      await api.post("/auth/forgot-password", { email: data.email });
       setSent(true);
     } catch (err) {
       setError(err.response?.data?.message || "Failed to send reset email");
@@ -86,9 +86,9 @@ export default function ForgotPassword() {
           ) : (
             <>
               <h2 className="forgot-title">Check your email</h2>
-              <p className="forgot-subtitle">
+              <div className="alert alert-success">
                 We've sent a password reset link to your email.
-              </p>
+              </div>
               <Link to="/login" className="back-link">
                 &lt; Back to Sign in
               </Link>

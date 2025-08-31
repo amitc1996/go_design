@@ -10,7 +10,7 @@ const ForgotPassword = React.lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetPassword = React.lazy(() => import("./pages/auth/ResetPassword"));
 
 const routes = [
-  { path: "/", name: "Home", element: Login, isPrivate: false },
+  { path: "/", name: "Home", element: Dashboard, isPrivate: true },
   { path: "/dashboard", name: "Dashboard", element: Dashboard, isPrivate: true },
   { path: "/transactions", name: "Transactions", element: Transactions, isPrivate: true },
   { path: "/wallet", name: "Wallet", element: Wallet, isPrivate: true },
