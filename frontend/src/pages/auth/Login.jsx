@@ -109,7 +109,7 @@ export default function Login() {
                 </div>
 
                 <Link
-                  to="/forgot"
+                  to="/forgot-password"
                   className="small text-decoration-none mt-2 mt-sm-0 forgot-password"
                 >
                   Forgot Password?

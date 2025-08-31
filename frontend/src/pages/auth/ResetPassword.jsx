@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import "./Password.scss";
+import logoImg from "src/assets/img/logo2.png";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
@@ -38,6 +39,14 @@ export default function ResetPassword() {
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
+       <div className="d-flex flex-column align-items-center">
+              {/* Logo OUTSIDE card */}
+              <img
+                src={logoImg}
+                alt="Logo"
+                className="mb-4"
+                style={{ maxWidth: "180px" }}
+              />
       <div className="login-block">
         <h2 className="forgot-title">Reset password</h2>
         <p className="forgot-subtitle">
@@ -87,6 +96,7 @@ export default function ResetPassword() {
           &lt; Back to Sign in
         </Link>
       </div>
+    </div>
     </div>
   );
 }

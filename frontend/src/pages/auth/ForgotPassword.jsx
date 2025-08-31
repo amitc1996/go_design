@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../services/api";
 import "./Password.scss";
+import logoImg from "src/assets/img/logo2.png";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -23,49 +24,60 @@ export default function ForgotPassword() {
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
-      <div className="login-block">
-        {!sent ? (
-          <>
-            <h2 className="forgot-title">Forgot password?</h2>
-            <p className="forgot-subtitle">
-              Enter your details to receive a reset link
-            </p>
+      <div className="d-flex flex-column align-items-center">
+        {/* Logo OUTSIDE card */}
+        <img
+          src={logoImg}
+          alt="Logo"
+          className="mb-4"
+          style={{ maxWidth: "180px" }}
+        />
 
-            <form id="forgotForm" className="w-100" onSubmit={submit}>
-              <div className="mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Your Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn btn-send"
-                disabled={loading}
-              >
-                {loading ? "Sending..." : "Send"}
-              </button>
-            </form>
+        {/* Card */}
+        <div className="login-block">
+          {!sent ? (
+            <>
+              <h2 className="forgot-title">Forgot password?</h2>
+              <p className="forgot-subtitle">
+                Enter your details to receive a reset link
+              </p>
 
-            <Link to="/login" className="back-link">
-              &lt; Back to Sign in
-            </Link>
-          </>
-        ) : (
-          <>
-            <h2 className="forgot-title">Check your email</h2>
-            <p className="forgot-subtitle">
-              We've sent a password reset link to your email.
-            </p>
-            <Link to="/login" className="back-link">
-              &lt; Back to Sign in
-            </Link>
-          </>
-        )}
+              <form id="forgotForm" className="w-100" onSubmit={submit}>
+                <div className="mb-3">
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Your Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-send"
+                  disabled={loading}
+                >
+                  {loading ? "Sending..." : "Send"}
+                </button>
+              </form>
+
+              <Link to="/login" className="back-link">
+                &lt; Back to Sign in
+              </Link>
+            </>
+          ) : (
+            <>
+              <h2 className="forgot-title">Check your email</h2>
+              <p className="forgot-subtitle">
+                We've sent a password reset link to your email.
+              </p>
+              <Link to="/login" className="back-link">
+                &lt; Back to Sign in
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
