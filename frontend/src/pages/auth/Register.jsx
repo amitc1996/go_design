@@ -5,6 +5,7 @@ import api from "../../services/api";
 import "./Login.scss"; // Reuse login styles
 import Img1 from "src/assets/img/img1.png";
 import googleImg from "src/assets/img/google.png";
+import logoImg from "src/assets/img/logo2.png";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -51,8 +52,16 @@ export default function Register() {
         {/* Right Section (Form) */}
         <div className="col-12 col-md-6 d-flex justify-content-center align-items-center p-4">
           <div className="box-1 w-100">
-            <h2 className="mb-2 heading-1">Create Account</h2>
-            <p className="text-muted mb-4 heading-2">Register to start using GoDesign</p>
+            <div className="text-center">
+              <img
+                src={logoImg}
+                alt="Logo"
+                className="mb-2"
+                style={{ maxWidth: "180px" }}
+              />
+              <h2 className="mb-2 heading-1">Create Account</h2>
+              <p className="text-muted mb-4 heading-2">Register to start using goDesyn</p>
+            </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* First + Last Name */}
