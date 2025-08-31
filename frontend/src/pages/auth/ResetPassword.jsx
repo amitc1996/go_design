@@ -57,7 +57,7 @@ export default function ResetPassword() {
           <div className="mb-3">
             <input
               type="email"
-              className="form-control"
+              className="form-control input-1"
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -68,7 +68,7 @@ export default function ResetPassword() {
           <div className="mb-3">
             <input
               type="password"
-              className="form-control"
+              className="form-control input-1"
               placeholder="New Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -79,7 +79,7 @@ export default function ResetPassword() {
           <div className="mb-3">
             <input
               type="password"
-              className="form-control"
+              className="form-control input-1"
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
