@@ -1,24 +1,23 @@
 import React from "react";
 
-const Dashboard = React.lazy(() => import("./pages/Dashboard"));
-const Wallet = React.lazy(() => import("./pages/Wallet"));
-const Transactions = React.lazy(() => import("./pages/Transactions"));
-const AccountSettings = React.lazy(() => import("./pages/AccountSettings"));
-const Login = React.lazy(() => import("./pages/auth/Login"));
-const Register = React.lazy(() => import("./pages/auth/Register"));
-const ForgotPassword = React.lazy(() => import("./pages/auth/ForgotPassword"));
-const ResetPassword = React.lazy(() => import("./pages/auth/ResetPassword"));
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function lazyWithDelay(factory, ms = 2000) {
+  return React.lazy(() =>
+    Promise.all([factory(), sleep(ms)]).then(([module]) => module)
+  );
+}
 
 const routes = [
-  { path: "/", name: "Home", element: Dashboard, isPrivate: true },
-  { path: "/dashboard", name: "Dashboard", element: Dashboard, isPrivate: true },
-  { path: "/transactions", name: "Transactions", element: Transactions, isPrivate: true },
-  { path: "/wallet", name: "Wallet", element: Wallet, isPrivate: true },
-  { path: "/account-settings", name: "Account Settings", element: AccountSettings, isPrivate: true },
-  { path: "/login", name: "Login", element: Login, isPrivate: false },
-  { path: "/register", name: "Register", element: Register, isPrivate: false },
-  { path: "/forgot-password", name: "Forgot Password", element: ForgotPassword, isPrivate: false },
-  { path: "/reset-password", name: "Reset Password", element: ResetPassword, isPrivate: false },
+  { path: "/", name: "Home", element: lazyWithDelay(() => import("./pages/Dashboard"), 1000), isPrivate: true },
+  { path: "/dashboard", name: "Dashboard", element: lazyWithDelay(() => import("./pages/Dashboard"), 1000), isPrivate: true },
+  { path: "/transactions", name: "Transactions", element: lazyWithDelay(() => import("./pages/Transactions"), 1000), isPrivate: true },
+  { path: "/wallet", name: "Wallet", element: lazyWithDelay(() => import("./pages/Wallet"), 2000), isPrivate: true },
+  { path: "/account-settings", name: "Account Settings", element: lazyWithDelay(() => import("./pages/AccountSettings"), 1000), isPrivate: true },
+  { path: "/login", name: "Login", element: lazyWithDelay(() => import("./pages/auth/Login"), 500), isPrivate: false },
+  { path: "/register", name: "Register", element: lazyWithDelay(() => import("./pages/auth/Register"), 500), isPrivate: false },
+  { path: "/forgot-password", name: "Forgot Password", element: lazyWithDelay(() => import("./pages/auth/ForgotPassword"), 500), isPrivate: false },
+  { path: "/reset-password", name: "Reset Password", element: lazyWithDelay(() => import("./pages/auth/ResetPassword"), 500), isPrivate: false },
 ];
 
 export default routes;

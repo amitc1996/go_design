@@ -3,12 +3,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./store/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import routes from "./routes";
-
+import Loading from "./components/Loading";
 export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading/>}>
           <Routes>
             {routes.map(({ path, element: Component, isPrivate }, idx) => (
               <Route

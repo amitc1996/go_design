@@ -27,7 +27,7 @@ export default function Register() {
       await api.post("/auth/signup", {
         first_name: data.firstname,
         last_name: data.lastname,
-        company: data.company,
+        company_name: data.company,
         email: data.email,
         phone: data.phone,
         password: data.password,
