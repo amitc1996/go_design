@@ -41,6 +41,7 @@ const verifyPayment = async ({ orderId, paymentId, signature, userId, amount }) 
 
 const getWalletBalance = async (userId) => {
   const user = await User.findByPk(userId);
+  console.log('user is',user)
   return user.wallet_balance;
 };
 
