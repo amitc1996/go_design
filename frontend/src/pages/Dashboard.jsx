@@ -10,7 +10,7 @@ const Dashboard = () => {
       {/* Welcome Section */}
       <div className="welcome mb-4">
         <h2>
-          Welcome <span className="gradient-text">{user?.name || "CompanyX"}</span>
+          Welcome <span className="gradient-text">{user?.company_name || "CompanyX"}</span>
         </h2>
         <p>Get a fixed project cost in a few clicks—no calls, no meetings.</p>
         <button className="btn-create">

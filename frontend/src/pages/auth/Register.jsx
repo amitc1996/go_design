@@ -94,10 +94,13 @@ export default function Register() {
               <div className="mb-3">
                 <input
                   type="text"
-                  className="form-control input-1"
-                  placeholder="Company Name (optional)"
-                  {...register("company")}
+                  className={`form-control input-1 ${errors.company ? "is-invalid" : ""}`}
+                  placeholder="Company Name"
+                  {...register("company", { required: "Last name is required" })}
                 />
+                 {errors.lastname && (
+                    <div className="invalid-feedback">{errors.company.message}</div>
+                  )}
               </div>
 
               {/* Email */}

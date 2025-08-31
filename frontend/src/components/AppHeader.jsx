@@ -6,14 +6,19 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { rechargeWallet } from "./paymentHelper";
+import WalletImg from "src/assets/img/Vector.png";
+import { useAuthState } from "src/store/AuthContext"; 
 
 const AppHeader = () => {
   const [showModal, setShowModal] = useState(false);
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(false);
-  const userId = 1;
+
+  const { user } = useAuthState(); 
+  const userId = user?.id; 
 
   const fetchBalance = async () => {
+    if (!userId) return; 
     try {
       const res = await axios.get(
         `http://localhost:5000/api/wallet/balance/${userId}`
@@ -27,8 +32,8 @@ const AppHeader = () => {
   const handleRechargeClick = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 
-  // 🔹 Main recharge handler
   const handleAddCredit = async (amount) => {
+    if (!userId) return; 
     setLoading(true);
     try {
       const result = await rechargeWallet({
@@ -50,7 +55,7 @@ const AppHeader = () => {
 
   useEffect(() => {
     fetchBalance();
-  }, []);
+  }, [userId]); 
 
   return (
     <>
@@ -63,25 +68,7 @@ const AppHeader = () => {
         </div>
         <div className="wallet d-flex align-items-center">
           <div className="wallet-balance-box d-flex align-items-center me-3">
-            <svg
-              width="23"
-              height="16"
-              viewBox="0 0 23 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="wallet-icon"
-            >
-              <rect
-                x="1.2"
-                y="1.2"
-                width="20.6"
-                height="13.6"
-                rx="4"
-                stroke="#485DFF"
-                strokeWidth="2"
-              />
-              <circle cx="5" cy="8" r="1.2" fill="#485DFF" />
-            </svg>
+            <img src={WalletImg} alt="" />
             <span className="wallet-balance-amount">${balance}</span>
           </div>
           <button className="btn-recharge" onClick={handleRechargeClick}>
@@ -91,7 +78,6 @@ const AppHeader = () => {
         </div>
       </header>
 
-      {/* Pass handler & loading state to WalletModal */}
       {showModal && (
         <WalletModal
           onClose={handleClose}
@@ -100,7 +86,6 @@ const AppHeader = () => {
         />
       )}
 
-      {/* Toast notifications container */}
       <ToastContainer
         position="top-right"
         autoClose={3000}
