@@ -1,4 +1,3 @@
-/* Prevent horizontal scroll */
 
 body {
   font-family: Arial, sans-serif;
@@ -19,12 +18,10 @@ body {
 
 // Login Box
 .box-1 {
-  padding: 20px;
-  margin-left: 200px;
+  padding: 20px 70px 70px;
 }
 
 .heading-1 {
-  width: 518px;
   flex-shrink: 0;
   font-family: "Brutal Milk No 2", Arial, sans-serif;
   font-size: 35px;
@@ -128,36 +125,6 @@ body {
   }
 }
 
-// Google Button
-.g-btn {
-  display: flex;
-  width: 180px;
-  height: 43px;
-  padding: 9px 17px;
-  align-items: center;
-  gap: 15px;
-  flex-shrink: 0;
-  border-radius: 13.176px;
-  border: 0.824px solid #BFBFBF;
-  background: #F9F9F9;
-  font-family: "Plus Jakarta Sans", Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  color: #000;
-  margin: 0 auto;
-  cursor: pointer;
-  transition: 0.3s ease;
-
-  &:hover {
-    background: #f1f1f1;
-  }
-
-  img {
-    width: 18px;
-    height: 18px;
-  }
-}
-
 .signup-text {
   height: 19px;
   color: #000;
@@ -186,7 +153,6 @@ body {
   max-width: 100%;
   height: auto;
 }
-
 
 .google-login-btn {
   display: flex;
@@ -219,4 +185,39 @@ body {
   border-radius: 50%;
   border: none;
   display: inline-block;
+}
+
+
+/* Extra small devices (portrait phones, <576px) */
+@media (max-width: 575.98px) { 
+  .box-1 {
+    padding: 2px;
+  }
+}
+
+/* Small devices (landscape phones, ≥576px) */
+@media (min-width: 576px) and (max-width: 767.98px) { 
+  .box-1 {
+    padding:2px;
+ }
+}
+
+/* Medium devices (tablets, ≥768px) */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+  /* styles */
+}
+
+/* Large devices (desktops, ≥992px) */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+  /* styles */
+}
+
+/* Extra large devices (large desktops, ≥1200px) */
+@media (min-width: 1200px) and (max-width: 1399.98px) { 
+  /* styles */
+}
+
+/* Extra extra large devices (very large desktops, ≥1400px) */
+@media (min-width: 1400px) { 
+  /* styles */
 }

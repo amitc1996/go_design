@@ -1,18 +1,15 @@
-import React from 'react'
+import React from "react";
 
-const AuthLayout = () => {
+const AuthLayout = ({ children }) => {
   return (
-    <div>
-      {/* <AppSidebar /> */}
-      <div className="wrapper d-flex flex-column min-vh-100">
-        <AppHeader />
-        <div className="body flex-grow-1">
-          {/* <AppContent /> */}
+    <div className="d-flex flex-column min-vh-100">
+      <div className="d-flex flex-grow-1">
+        <div className="auth-content container-fluid d-flex align-items-center justify-content-center py-2">
+          {children}
         </div>
-        {/* <AppFooter /> */}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AuthLayout
+export default AuthLayout;

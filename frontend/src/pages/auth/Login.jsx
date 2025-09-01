@@ -6,6 +6,7 @@ import "./Login.scss";
 import Img1 from "src/assets/img/img1.png";
 import googleImg from "src/assets/img/google.png";
 import logoImg from "src/assets/img/logo2.png";
+import AuthLayout from "../../layout/AuthLayout";
 
 export default function Login() {
   const dispatch = useAuthDispatch();
@@ -38,12 +39,14 @@ export default function Login() {
   };
 
   return (
-    <div className="container min-vh-100 d-flex align-items-center bg-white">
+    <AuthLayout>
       <div className="row g-0 w-100">
+        {/* Left Section */}
         <div className="col-12 col-md-6 d-flex justify-content-center align-items-center p-4 bg-light left-section">
           <img src={Img1} alt="Dummy Mobile" className="img-fluid w-75 w-md-100" />
         </div>
 
+        {/* Right Section */}
         <div className="col-12 col-md-6 d-flex justify-content-center align-items-center p-4">
           <div className="box-1 w-100">
             <div className="text-center">
@@ -54,7 +57,9 @@ export default function Login() {
                 style={{ maxWidth: "180px" }}
               />
               <h2 className="mb-2 heading-1">Get Started Now</h2>
-              <p className="text-muted mb-4 heading-2">Login into your account to continue</p>
+              <p className="text-muted mb-4 heading-2">
+                Login into your account to continue
+              </p>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,7 +67,9 @@ export default function Login() {
                 <input
                   type="email"
                   id="email"
-                  className={`form-control input-1 ${errors.email ? "is-invalid" : ""}`}
+                  className={`form-control input-1 ${
+                    errors.email ? "is-invalid" : ""
+                  }`}
                   placeholder="Enter your email address"
                   {...register("email", {
                     required: "Email is required",
@@ -81,7 +88,9 @@ export default function Login() {
                 <input
                   type="password"
                   id="password"
-                  className={`form-control input-1 ${errors.password ? "is-invalid" : ""}`}
+                  className={`form-control input-1 ${
+                    errors.password ? "is-invalid" : ""
+                  }`}
                   placeholder="Enter your password"
                   {...register("password", {
                     required: "Password is required",
@@ -92,7 +101,9 @@ export default function Login() {
                   })}
                 />
                 {errors.password && (
-                  <div className="invalid-feedback">{errors.password.message}</div>
+                  <div className="invalid-feedback">
+                    {errors.password.message}
+                  </div>
                 )}
               </div>
 
@@ -103,7 +114,10 @@ export default function Login() {
                     type="checkbox"
                     id="rememberCheck"
                   />
-                  <label htmlFor="rememberCheck" className="small ms-1 remember-label">
+                  <label
+                    htmlFor="rememberCheck"
+                    className="small ms-1 remember-label"
+                  >
                     Remember me
                   </label>
                 </div>
@@ -118,7 +132,11 @@ export default function Login() {
 
               {error && <div className="text-danger mb-3 small">{error}</div>}
 
-              <button type="submit" className="btn btn-primary w-100 btn-1" disabled={loading}>
+              <button
+                type="submit"
+                className="btn btn-primary w-100 btn-1"
+                disabled={loading}
+              >
                 {loading ? "Signing..." : "Log in"}
               </button>
             </form>
@@ -137,14 +155,21 @@ export default function Login() {
             </div>
 
             <div className="d-flex justify-content-center">
-              <button type="button" className="google-login-btn d-flex align-items-center">
-                <img src={googleImg} alt="Google logo" className="google-icon me-2" />
+              <button
+                type="button"
+                className="google-login-btn d-flex align-items-center"
+              >
+                <img
+                  src={googleImg}
+                  alt="Google logo"
+                  className="google-icon me-2"
+                />
                 Login with Google
               </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </AuthLayout>
   );
 }
