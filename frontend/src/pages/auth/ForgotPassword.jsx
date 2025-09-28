@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import api from "../../services/api";
+
 import "./Password.scss";
+import AuthLayout from "../../layout/AuthLayout";
+import Img1 from "src/assets/img/img1.png";
 import logoImg from "src/assets/img/logo2.png";
 
 export default function ForgotPassword() {
@@ -30,31 +33,32 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
-      <div className="d-flex flex-column align-items-center">
-        {/* Logo OUTSIDE card */}
-        <img
-          src={logoImg}
-          alt="Logo"
-          className="mb-4"
-          style={{ maxWidth: "180px" }}
-        />
+    <AuthLayout>
+      <div className="row g-0 w-100">
+        {/* Left Section */}
+        <div className="col-12 col-md-6 d-flex justify-content-center align-items-center p-4 bg-light left-section">
+          <img src={Img1} alt="Dummy Mobile" className="img-fluid w-75 w-md-100" />
+        </div>
 
-        {/* Card */}
-        <div className="login-block">
-          {!sent ? (
-            <>
-              <h2 className="forgot-title">Forgot password?</h2>
-              <p className="forgot-subtitle">
-                Enter your email to receive a reset link
+        {/* Right Section */}
+        <div className="col-12 col-md-6 d-flex justify-content-center align-items-center p-4">
+          <div className="box-1 w-100">
+            <div className="text-center mb-4">
+              <img src={logoImg} alt="Logo" className="mb-2" style={{ maxWidth: "180px" }} />
+              <h2 className="mb-2 heading-1">Forgot Password</h2>
+              <p className="text-muted mb-4 heading-2">
+                Enter your email to receive a password reset link
               </p>
+            </div>
 
-              <form id="forgotForm" className="w-100" onSubmit={handleSubmit(onSubmit)}>
+            {!sent ? (
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-3">
                   <input
                     type="email"
+                    id="email"
                     className={`form-control input-1 ${errors.email ? "is-invalid" : ""}`}
-                    placeholder="Your Email"
+                    placeholder="Enter your email address"
                     {...register("email", {
                       required: "Email is required",
                       pattern: {
@@ -68,34 +72,36 @@ export default function ForgotPassword() {
                   )}
                 </div>
 
-                {error && <div className="text-danger small mb-2">{error}</div>}
+                {error && <div className="text-danger mb-3 small">{error}</div>}
 
                 <button
                   type="submit"
-                  className="btn btn-send w-100"
+                  className="btn btn-primary w-100 btn-1"
                   disabled={loading}
                 >
-                  {loading ? "Sending..." : "Send"}
+                  {loading ? "Sending..." : "Send reset link"}
                 </button>
-              </form>
 
-              <Link to="/login" className="back-link">
-                &lt; Back to Sign in
-              </Link>
-            </>
-          ) : (
-            <>
-              <h2 className="forgot-title">Check your email</h2>
-              <div className="alert alert-success">
-                We've sent a password reset link to your email.
+                <p className="mt-3 small text-center">
+                  <Link to="/login" className="fw-semibold text-decoration-none">
+                    Back to sign in
+                  </Link>
+                </p>
+              </form>
+            ) : (
+              <div className="text-center">
+                <h4 className="mb-2">Check your email</h4>
+                <p className="text-muted mb-3">
+                  We’ve sent a password reset link to your email.
+                </p>
+                <Link to="/login" className="btn btn-info">
+                  Back to sign in
+                </Link>
               </div>
-              <Link to="/login" className="back-link">
-                &lt; Back to Sign in
-              </Link>
-            </>
-          )}
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </AuthLayout>
   );
 }
